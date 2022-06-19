@@ -54,7 +54,7 @@ class Order(View):
                 item.ids.append(item['id'])
 
             order = OrderModel.objects.create(price=price)
-            order.items.add(*item_id)
+            order.items.add(*item_ids)
 
             context = {
                 'items': order_items['items'],
