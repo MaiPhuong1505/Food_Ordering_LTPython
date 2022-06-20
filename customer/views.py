@@ -30,6 +30,13 @@ class Order(View):
         return render(request, 'customer/order.html',context)
 
     def post(self, request, *args, **kwargs):
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        street = request.POST.get('street')
+        city = request.POST.get('city')
+        state = request.POST.get('state')
+        zip_code = request.POST.get('zip_code')
+
         order_items ={
             'items': []
         }
@@ -53,12 +60,47 @@ class Order(View):
                 price += item['price']
                 item.ids.append(item['id'])
 
-            order = OrderModel.objects.create(price=price)
+            order = OrderModel.objects.create(
+                price=price,
+                name=name,
+                email=email,
+                street=street,
+                city=city,
+                state=state,
+                zip_code=zip_code
+                )
             order.items.add(*item_ids)
+            
 
+   
             context = {
                 'items': order_items['items'],
                 'price':price
             }    
 
             return render(request, 'customer/order_confirmation.html', context)
+
+class Menu(View):
+    def get(self, request, *args, **kwargs):
+        menu_items=MenuItem.objects.all()
+
+        context = {
+            'menu_items': menu_items
+        }
+
+        return render(request, 'customer/menu.html',context)
+class MenuSearch(View):
+    def get(self, request, *args, **kwargs):
+        query = self.request.GET.get("q")
+
+        menu_items=MenuItem.objects.filter(
+            Q(name_icontains=query) |
+            Q(price_icontains=query) |
+            Q(description_icontains=query)
+        ) 
+
+        context = {
+            'menu_items': menu_items
+        }
+
+        return render(request, 'customer/menu.html', context)
