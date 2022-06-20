@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-
+from django.db.models import Q
 from customer.models import Category, MenuItem, OrderModel
 # Create your views here.
 class Index(View):
@@ -94,9 +94,9 @@ class MenuSearch(View):
         query = self.request.GET.get("q")
 
         menu_items=MenuItem.objects.filter(
-            Q(name_icontains=query) |
-            Q(price_icontains=query) |
-            Q(description_icontains=query)
+            Q(name__icontains=query) |
+            Q(price__icontains=query) |
+            Q(description__icontains=query)
         ) 
 
         context = {
