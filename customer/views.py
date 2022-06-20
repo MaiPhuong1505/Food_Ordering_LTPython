@@ -79,3 +79,28 @@ class Order(View):
             }    
 
             return render(request, 'customer/order_confirmation.html', context)
+
+class Menu(View):
+    def get(self, request, *args, **kwargs):
+        menu_items=MenuItem.objects.all()
+
+        context = {
+            'menu_items': menu_items
+        }
+
+        return render(request, 'customer/menu.html',context)
+class MenuSearch(View):
+    def get(self, request, *args, **kwargs):
+        query = self.request.GET.get("q")
+
+        menu_items=MenuItem.objects.filter(
+            Q(name_icontains=query) |
+            Q(price_icontains=query) |
+            Q(description_icontains=query)
+        ) 
+
+        context = {
+            'menu_items': menu_items
+        }
+
+        return render(request, 'customer/menu.html', context)
