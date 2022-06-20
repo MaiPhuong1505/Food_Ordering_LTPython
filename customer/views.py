@@ -5,11 +5,11 @@ from customer.models import Category, MenuItem, OrderModel
 # Create your views here.
 class Index(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'index.html')
+        return render(request, 'customer/index.html')
 
 class About(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'about.html')
+        return render(request, 'customer/about.html')
 
 class Order(View):
     def get(self, request, *args, **kwargs):
