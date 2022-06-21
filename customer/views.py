@@ -33,9 +33,9 @@ class Order(View):
         name = request.POST.get('name')
         email = request.POST.get('email')
         street = request.POST.get('street')
+        ward = request.POST.get('ward')
+        district = request.POST.get('district')
         city = request.POST.get('city')
-        state = request.POST.get('state')
-        zip_code = request.POST.get('zip_code')
 
         order_items ={
             'items': []
@@ -56,29 +56,27 @@ class Order(View):
             price = 0
             item_ids = []
 
-            for item in order_items['items']:
-                price += item['price']
-                item_ids.append(item['id'])
+        for item in order_items['items']:
+            price += item['price']
+            item_ids.append(item['id'])
 
-            order = OrderModel.objects.create(
-                price=price,
-                name=name,
-                email=email,
-                street=street,
-                city=city,
-                state=state,
-                zip_code=zip_code
-                )
-            order.items.add(*item_ids)
+        order = OrderModel.objects.create(
+            price=price,
+            name=name,
+            email=email,
+            street=street,
+            ward=ward,
+            district=district,
+            city=city
+            )
+        order.items.add(*item_ids)
             
+        context = {
+            'items': order_items['items'],
+            'price':price
+        }    
 
-   
-            context = {
-                'items': order_items['items'],
-                'price':price
-            }    
-
-            return render(request, 'customer/order_confirmation.html', context)
+        return render(request, 'customer/order_confirmation.html', context)
 
 class Menu(View):
     def get(self, request, *args, **kwargs):
