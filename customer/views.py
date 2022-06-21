@@ -16,13 +16,16 @@ class About(View):
         return render(request, 'customer/about.html')
 
 class Order(View):
+    
     def get(self, request, *args, **kwargs):
-
-        #get every item from each category
+       
         appetizers = MenuItem.objects.filter(category__name__contains='Appetizer')
         entres = MenuItem.objects.filter(category__name__contains='Entre')
         desserts = MenuItem.objects.filter(category__name__contains='Dessert')
-        drinks = MenuItem.objects.filter(category__name__contains='Drink')
+        drinks = MenuItem.objects.filter(category__name__contains='Drink')    
+        
+        #get every item from each category
+        
         # pass into context
         context ={
             'appetizers': appetizers,
@@ -57,8 +60,8 @@ class Order(View):
 
             order_items['items'].append(item_data) 
 
-            price = 0
-            item_ids = []
+        price = 0
+        item_ids = []
 
         for item in order_items['items']:
             price += item['price']
