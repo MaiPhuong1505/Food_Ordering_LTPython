@@ -29,9 +29,9 @@ class OrderModel(models.Model):
     name = models.CharField(max_length=50, blank=True)
     email = models.CharField(max_length=50, blank=True)
     street = models.CharField(max_length=50, blank=True)
+    ward = models.CharField(max_length=50, blank=True)
+    district = models.CharField(max_length=50, blank=True)
     city = models.CharField(max_length=50, blank=True)
-    state = models.CharField(max_length=15, blank=True)
-    zip_code = models.IntegerField(blank=True, null=True)
     is_paid = models.BooleanField(default=False)
     is_shipped = models.BooleanField(default=False)
 

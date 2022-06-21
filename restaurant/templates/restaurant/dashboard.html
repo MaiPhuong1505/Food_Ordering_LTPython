@@ -24,9 +24,9 @@
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Street</th>
+                            <th scope="col">Ward</th>
+                            <th scope="col">District</th>
                             <th scope="col">City</th>
-                            <th scope="col">State</th>
-                            <th scope="col">Zip Code</th>
                             <th scope="col">Is Paid?</th>
                         </tr>
                     </thead>
@@ -38,10 +38,10 @@
                             <td>{{order.price}}</td>
                             <td>{{order.name}}</td>
                             <td>{{order.email}}</td>
-                            <td>{{order.street}}</td>
+                            <td>{{order.street}}</td>                          
+                            <td>{{order.ward}}</td>
+                            <td>{{order.district}}</td>
                             <td>{{order.city}}</td>
-                            <td>{{order.state}}</td>
-                            <td>{{order.zip_code}}</td>
                             <td>
                                 {% if order.is_paid %}
                                 <i style="color:green;" class="fas fa-check"></i>
