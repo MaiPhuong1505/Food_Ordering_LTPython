@@ -145,7 +145,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-ACCOUNT_ADAPTER = 'restaurant.account_adapter.NoNewUserAccountAdapter'
+# ACCOUNT_ADAPTER = 'restaurant.account_adapter.NoNewUserAccountAdapter'
 
 LOGIN_REDIRECT_URL = 'dashboard'
 
