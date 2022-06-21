@@ -5,7 +5,8 @@
         <div class="col-md-12 col-sm-12 p-4">
             <form method="POST">
                 {% csrf_token %}
-                <div class="pt-5">
+                <p><h5><b>Món khai vị</b></h5></p>
+                <div class="pb-4">
                     {% for app in appetizers %}
                     <div class="row">
                         <div class="col-md-2 col-sm-12">
@@ -25,9 +26,10 @@
                     <hr />
                 {% endfor %}
                 </div>
-                <div class="pt-5">
+                <p><h5><b>Món chính</b></h5></p>
+                <div class="pb-4">
                     {% for entre in entres %}
-                    <div class="row mt-4">
+                    <div class="row mb-3">
                         <div class="col-md-2 col-sm-12">
                             <img class="rounded" src="{{ entre.image.url }}" width="150" height="100"/>
                         </div>
@@ -45,9 +47,10 @@
                     <hr />
                     {% endfor %}
                 </div>
-                <div class="pt-5">
+                <p><h5><b>Món tráng miệng</b></h5></p>
+                <div class="pb-4">
                     {% for dessert in desserts %}
-                    <div class="row mt-4">
+                    <div class="row mb-3">
                         <div class="col-md-2 col-sm-12">
                             <img class="rounded" src="{{ dessert.image.url }}" width="150" height="100"/>
                         </div>
@@ -65,9 +68,10 @@
                     <hr />
                     {% endfor %}
                 </div>
-                <div class="pt-5">
+                <p><h5><b>Nước uống</b></h5></p>
+                <div class="pb-4">
                     {% for drink in drinks %}
-                    <div class="row mt-4">
+                    <div class="row mb-3">
                         <div class="col-md-2 col-sm-12">
                             <img class="rounded" src="{{ drink.image.url }}" width="150" height="100"/>
                         </div>
