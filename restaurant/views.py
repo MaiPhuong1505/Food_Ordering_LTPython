@@ -33,7 +33,7 @@ class OrderDetails(LoginRequiredMixin, UserPassesTestMixin, View):
     def get(self, request, pk, *args, **kwargs):
         order = OrderModel.objects.get(pk=pk)
         context ={
-            'order' : order
+            'order' : order,
         }
         return render(request, 'restaurant/order-details.html', context)
     
