@@ -21,7 +21,7 @@ from customer.views import Index, About, Order, Menu, MenuSearch
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/', include('allauth.urls')),
+    path('accounts/', include('allauth.urls')),
     path('restaurant/', include('restaurant.urls')),
     path('', Index.as_view(), name='index'),
     path('about/', About.as_view(), name='about'),

@@ -5,7 +5,11 @@ from customer.models import Category, MenuItem, OrderModel
 # Create your views here.
 class Index(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'customer/index.html')
+        menu_items=MenuItem.objects.all()
+        context = {
+            'menu_items': menu_items.order_by('category')[:5]
+        }
+        return render(request, 'customer/index.html', context)
 
 class About(View):
     def get(self, request, *args, **kwargs):
@@ -83,7 +87,7 @@ class Menu(View):
         menu_items=MenuItem.objects.all()
 
         context = {
-            'menu_items': menu_items
+            'menu_items': menu_items.order_by('category')
         }
 
         return render(request, 'customer/menu.html',context)

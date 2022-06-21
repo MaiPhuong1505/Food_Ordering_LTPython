@@ -25,7 +25,7 @@ class Dashboard(LoginRequiredMixin, UserPassesTestMixin, View):
             'total_orders' : len(orders)
             }
         
-        return render(request, 'restaurant/dashboard.html')
+        return render(request, 'restaurant/dashboard.html', context)
     def test_func(self):
         return self.request.user.groups.filter(name = 'Staff').exists()
 
